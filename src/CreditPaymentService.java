@@ -1,19 +1,11 @@
 public class CreditPaymentService {
-    public int calculate(int loanTermInYears) {
-        int payment = 0;
-        if (loanTermInYears == 1) {
-           payment = 87911;
-        }
-
-        if (loanTermInYears == 2) {
-           payment = 46140;
-        }
+    public int calculate(int amount, int term, double percent) {
+         double percentInMonth = percent / 100 / 12;
+         double coefficient = (percentInMonth * Math.pow((1+percentInMonth),term)) / (Math.pow((1+percentInMonth),term) - 1);
+         int paymentPerMonth = (int)(coefficient * amount);
+         return paymentPerMonth;
 
 
-        if (loanTermInYears == 3) {
-            payment =  32262;
-        }
-        return payment;
       }
     }
 
